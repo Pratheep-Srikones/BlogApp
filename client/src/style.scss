@@ -1,0 +1,437 @@
+$lightblue : #cedbf1;
+$bgblue: rgb(14, 0, 30);
+$buttoncolor: rgb(10, 0, 46);
+.app {
+    display: flex;
+    justify-content: center;
+    .container {
+        width: 100%;
+
+        .link {
+            text-decoration: none;
+            color: inherit;
+        }
+        //LOGIN & REGISTER
+        .auth {
+            position: relative; // Ensure the auth container is positioned relative
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            width: 100vw;
+            z-index: 1; // Ensure this layer is above the blurred background
+
+            // Create a blurred background layer
+            &::before {
+                content: '';
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-image: url('../public/loginbg.jpg');
+                background-size: cover;
+                background-position: center;
+                filter: blur(2px)  brightness(40%);
+                
+                -webkit-filter: blur(2px)  brightness(40%);
+                z-index: -1; // Send this layer behind the content
+            }
+
+            h1 {
+                font-size: 20px; // Added px for font-size
+                font-family: 'Roboto', sans-serif;
+                margin-bottom: 20px;
+                color: rgb(234, 229, 235);
+            }
+
+            form {
+                display: flex;
+                flex-direction: column;
+                padding: 20px; // Increased padding for a more spacious look
+                background-color: rgba(255, 255, 255, 0.2); // Transparent whitish background
+                backdrop-filter: blur(12px); // Adds a stronger blur effect to the form background
+                -webkit-backdrop-filter: blur(12px); // Ensures compatibility with older browsers
+                border: 4px solid white; // Thick white border
+                border-radius: 8px; // Optional: Rounded corners
+                width: 250px; // Increased width for better spacing
+                gap: 15px;
+                z-index: 2; // Ensure form is above the blurred background
+
+                input {
+                    padding: 10px;
+                    border: none;
+                    border-bottom: 1px solid;
+                    border-radius: 5px;
+                }
+                button {
+                    padding: 10px;
+                    margin-bottom: 10px;
+                    border-radius: 5px;
+                    border: none;
+                    transition: box-shadow 0.3s ease;
+                    cursor: pointer;
+
+                    &:hover {
+                        box-shadow: 0 0 10px rgba(0, 0, 0);
+                        background-color: #b5b6b6;
+                    }
+                }
+
+                p {
+                    font-size: 14px;
+                    color: rgb(250, 145, 145);
+                    text-align: center;
+                }
+                span {
+                    font-size: 15px;
+                    text-align: center;
+                }
+
+                
+            }
+        }
+        //NAVBAR
+
+        .navbar {
+            position: relative; // Ensure the navbar can contain absolutely positioned elements
+            background-color:$bgblue; // Transparent whitish background
+            backdrop-filter: blur(12px); // Adds a stronger blur effect to the form background
+            -webkit-backdrop-filter: blur(12px); // Ensures compatibility with older browsers
+            color: white;
+            .container {
+                padding: 10px 0;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                position: relative; // Ensure the container is the positioning reference for the logo
+        
+                .logo {
+                    position: absolute;
+                   // Adjust as needed for spacing from the left
+                    img {
+                        width: 140px;
+                        height: 140px;
+                    }
+                }
+        
+                .links {
+                    display: flex;
+                    align-items: center;
+                    gap: 20px;
+                    margin-left: auto; // Pushes the links to the right of the container
+        
+                    h6 {
+                        font-size: 16px;
+                        font-weight: 300;
+                    }
+        
+                    span {
+                        cursor: pointer;
+                    }
+        
+                    .write {
+                        width: 50px;
+                        height: 50px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        font-weight: 300;
+                    }
+                }
+            }
+        }
+        //FOOTER
+        footer {
+            margin-top: 100px;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 14px;
+            background-color: $bgblue; // Transparent whitish background
+            backdrop-filter: blur(12px); // Adds a stronger blur effect to the form background
+            -webkit-backdrop-filter: blur(12px); // Ensures compatibility with older browsers
+            color: white;
+            img {
+                width: 50px;
+                height: 50px;
+            }
+        }
+
+        //HOMEPAGE
+        .home{
+            .posts{
+                margin-top: 50px;
+                display: flex;
+                flex-direction: column;
+                gap: 150px;
+
+                .post {
+                    display: flex;
+                    gap: 100px;
+
+                    &:nth-child(2n+1) {
+                        flex-direction: row-reverse;
+                    }
+                    .img{
+                        flex: 3;
+                        position: relative;
+ /*                        &::after {
+                            content: "";
+                            width: 100%;
+                            height: 100%;
+                            background-color: rgba(7, 7, 7, 0.2); // Transparent whitish background
+                            backdrop-filter: blur(12px); // Adds a stronger blur effect to the form background
+                            -webkit-backdrop-filter: blur(12px); // Ensures compatibility with older browsers
+                            position: absolute;
+                            top: 20px;
+                            left: -20px;
+                            z-index: -1;
+                        }
+                        &::after:hover {
+                            scale: 1.1;
+                        } */
+                        img {
+                            width: 100%;
+                            border-radius: 10px; 
+                            max-height: 400px;
+                            object-fit: cover;
+
+
+                            &:hover {
+                                scale: 1.1;
+                            }
+                        }
+                    }
+                    .content{
+                        flex: 4;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: space-between;
+
+                        h1 {
+                            font-size: 48px;
+                        }
+
+                        p {
+                          font-size: 15px;  
+                        }
+
+                        button {
+                            width: max-content;
+                            padding: 10px 20px;
+                            border: none;
+                            cursor: pointer;
+                            background-color: $bgblue;
+                            color: white;
+                            border: 1px solid white;
+                            border-radius: 10px;
+
+                            &:hover {
+                                text-decoration: underline;
+                                background-color: white;
+                                color: $bgblue;
+                                border: 1px solid $bgblue;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        //Single
+
+        .single {
+            display: flex;
+            gap: 50px;
+
+            .content {
+                flex: 5;
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+                img{
+                    width: 100%;
+                    height: 200px;
+                    object-fit: cover;
+                }
+                
+                .user {
+                   display: flex;
+                   align-items: center;
+                   gap: 10px;
+                   font-size: 14px;
+                    img {
+                       width: 50px;
+                       height: 50px;
+                       border-radius: 50%;
+                       object-fit: cover; 
+                      
+                    }
+
+                    span {
+                        font-weight: bold;
+                    }
+                    p {
+                        margin: 0;
+                    }
+                    .edit {
+                        display: flex;
+                        gap: 8px;
+                        img {
+                            height: 20px;
+                            width: 20px;
+                            cursor: pointer;
+                            border-radius: 50%;
+                            object-fit: contain;
+
+                            &:hover {
+                                scale: 1.1;
+                            }
+                        }
+                    }
+    
+                }
+                h1 {
+                    font-size: 40px;
+                    color: $bgblue;
+                }
+                
+                p{
+                    text-align: justify;
+                    line-height: 20px;
+                }
+            }
+
+            .menu {
+                flex: 2;
+                display: flex;
+                flex-direction: column;
+                gap: 25px;
+
+                .post {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 5px;
+
+                    h2,h3 {
+                        color:#404040
+                    }
+
+                    img {
+                        height: 150px;
+                        width: 100%;
+                        object-fit: cover;
+                    }
+
+                    button {
+                        width: max-content;
+                        padding: 10px 20px;
+                        border: none;
+                        cursor: pointer;
+                        background-color: $bgblue;
+                        color: white;
+                        border: 1px solid white;
+                        border-radius: 10px;
+
+                        &:hover {
+                            text-decoration: underline;
+                            background-color: white;
+                            color: $bgblue;
+                            border: 1px solid $bgblue;
+                        }
+                    }
+                }
+            }
+        }
+
+        //WRITE
+
+        .add {
+            margin-top: 20px;
+            display: flex;
+            gap: 20px;
+
+            .content {
+                flex: 5;
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+
+                input {
+                    padding: 10px;
+                    border: 1px solid lightgray;
+                }
+
+                .editorContainer {
+                    height: 400px;
+                    overflow: scroll;
+                    border: 1px solid lightgray;
+                    .editor {
+                        height:100%;
+                        border: none;
+                    }
+                }
+            }
+            .menu {
+                flex: 2;
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+
+                .item {
+                    border: 1px solid lightgray;
+                    padding: 10px;
+                    flex: 1;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+                    font-size: 12px;
+                    color: #555;
+
+                    h1 {
+                        font-size: 20px;
+                    }
+
+                    .file {
+                        text-decoration: underline;
+                        cursor: pointer;
+                    }
+
+                    .buttons {
+                        display: flex;
+                        gap: 25px;
+
+                        :first-child {
+                            cursor: pointer;
+                            color: $bgblue;
+                            background-color: white;
+                            border: 1px solid $bgblue;
+                            border-radius: 5px;
+                            padding: 3px 5px;
+                        }
+
+                        :last-child {
+                            cursor: pointer;
+                            color: white;
+                            background-color: $bgblue;
+                            border: 1px solid white;
+                            border-radius: 5px;
+                            padding: 3px 5px;
+                        }
+                    }
+                    .cate{
+                        display: flex;
+                        align-items: center;
+                        gap: 2px;
+                        color: $bgblue;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
