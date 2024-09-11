@@ -10,7 +10,7 @@ export const getPosts = (req, res) => {
 };
 
 export const getPost = (req,res) => {
-    const q = "SELECT post_id, username, heading, description, image, picture, category, date FROM user  INNER JOIN post USING(user_id) WHERE post.post_id = ?";
+    const q = "SELECT post_id, username, heading, body, description, image, picture, category, date FROM user  INNER JOIN post USING(user_id) WHERE post.post_id = ?";
     db.query(q,[req.params.id], (err,data) => {
         if(err) return res.status(500).json(err);
 
@@ -56,14 +56,15 @@ export const addPost = (req,res) => {
     jwt.verify(token, 'jwtkey', (err, userInfo) => {
         if (err) return res.status(403).json("Token is not valid!");
     
-        const q = "INSERT INTO post(heading,description,image,category,date,user_id) VALUES (?) "
+        const q = "INSERT INTO post(heading,body,image,category,date,user_id,description) VALUES (?) "
         const values = [
             req.body.heading,
-            req.body.description,
+            req.body.body,
             req.body.image,
             req.body.category,
             req.body.date,
-            userInfo.id
+            userInfo.id,
+            req.body.description,
         ];
 
         db.query(q,[values],(err,data) => {
@@ -82,12 +83,13 @@ export const updatePost = (req,res) => {
         if (err) return res.status(403).json("Token is not valid!");
     
         const postId  = req.params.id;
-        const q = "UPDATE post SET heading = ?, description=?, image=?, category=? WHERE post_id = ? AND user_id = ?"
+        const q = "UPDATE post SET heading = ?, body=?, image=?, category=?, description=? WHERE post_id = ? AND user_id = ?"
         const values = [
             req.body.heading,
-            req.body.description,
+            req.body.body,
             req.body.image,
             req.body.category,
+            req.body.description,
         ];
 
         db.query(q,[...values,postId,userInfo.id],(err,data) => {

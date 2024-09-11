@@ -46,7 +46,7 @@ const Single = () => {
       <div className="content">
         <img src={`/uploads/${post.image}`} alt="" />
         <div className="user">
-          {post.picture && <img src={post.picture} alt="" />}
+          {post.picture && <img src={`/profilepics/${post.picture}`} alt="" />}
           <div className="info">
             <span>{post.username}</span>
             <p>Posted {moment(post.date).fromNow()}</p>
@@ -60,7 +60,7 @@ const Single = () => {
         </div>
 
         <h1>{post.heading}</h1>
-        {getText(post.description)}
+        {getText(post.body)}
           
       </div>
       <div className="menu">

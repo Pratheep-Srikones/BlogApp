@@ -27,7 +27,7 @@ const Menu = ({category}) => {
       <h2>Other posts you may like</h2>
       {posts.map(post => (
         <div key={post.id} className="post"> 
-            <img src={`./uploads/${post?.image}`} alt="x" />
+            <img src={`/uploads/${post?.image}`} alt="x" />
             <h3>{post.heading}</h3>
             <button>Read more</button>
         </div>

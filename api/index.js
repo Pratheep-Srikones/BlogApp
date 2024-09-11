@@ -28,6 +28,21 @@ app.post('/api/upload', upload.single('file'), function (req, res) {
     res.status(200).json(file.filename);
 });
 
+const profilePicStorage = multer.diskStorage({
+  destination: function(req, file, cb) {
+    cb(null,'../client/public/profilepics');
+  },
+  filename: function(req, file, cb) {
+    cb(null,"User"+Date.now()+file.originalname);
+  }
+})
+const uploadProfilePic = multer({storage: profilePicStorage});
+app.post('/api/uploadprofilepic',uploadProfilePic.single('file'), function(req,res) {
+  const file = req.file;
+  res.status(200).json(file.filename);
+});
+
+
 app.use("/api/posts",postRoutes);
 app.use("/api/auth",authRoutes);
 app.use("/api/users",userRoutes);

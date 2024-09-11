@@ -9,8 +9,9 @@ const Write = () => {
 
   const state = useLocation().state;
 
-  const [value, setValue] = useState(state?.description || '');
+  const [value, setValue] = useState(state?.body || '');
   const [heading, setHeading] = useState(state?.heading || '');
+  const [description, setDescription] = useState(state?.description|| '');
   const [file, setFile] = useState(null);
   const [category,setCategory] = useState(state?.category || '');
 
@@ -29,8 +30,8 @@ const Write = () => {
     const imgUrl = await upload();
 
     try {
-      state ? await axios.put(`http://localhost:2002/api/posts/${state.post_id}`,{heading,description:value,category,image:file?imgUrl : ""})
-      : await axios.post(`http://localhost:2002/api/posts/`,{heading,description:value,category,image:file?imgUrl : "",date:moment(Date.now()).format('YYYY-MM-DD HH:mm:ss' )});
+      state ? await axios.put(`http://localhost:2002/api/posts/${state.post_id}`,{heading,body:value,category,image:file?imgUrl : "",description})
+      : await axios.post(`http://localhost:2002/api/posts/`,{heading,body:value,category,image:file?imgUrl : "",date:moment(Date.now()).format('YYYY-MM-DD HH:mm:ss'),description});
     }catch(err) {
       console.log(err);
     }
@@ -39,6 +40,7 @@ const Write = () => {
     <div className="add">
       <div className="content">
         <input required type="text" value={heading} name="" id="" placeholder="Title" onChange={(e)=>setHeading(e.target.value)}/>
+        <input type="text" value={description} placeholder='Short Description (optional)' onChange={(e)=>setDescription(e.target.value)}/>
         <div className="editorContainer">
         <ReactQuill className='editor' theme="snow" value={value} onChange={setValue} />
         </div>
