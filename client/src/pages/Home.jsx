@@ -34,7 +34,10 @@ const Home = () => {
                                 <h1>{post.heading}</h1>
                             </Link>
                             <p>{post.description}</p>
-                            <button>Read more</button>
+                            <Link className='link' to={`/post/${post.post_id}`}>
+                                <button>Read more</button>
+                            </Link>
+                            
                         </div>
                     </div>
                 ))}

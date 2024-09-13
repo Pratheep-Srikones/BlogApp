@@ -1,5 +1,5 @@
 import { useState,useEffect } from "react";
-//import { useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from "axios";
 
 const Menu = ({category}) => {
@@ -29,7 +29,9 @@ const Menu = ({category}) => {
         <div key={post.id} className="post"> 
             <img src={`/uploads/${post?.image}`} alt="x" />
             <h3>{post.heading}</h3>
-            <button>Read more</button>
+            <Link className='link' to={`/post/${post.post_id}`}>
+                                <button>Read more</button>
+                            </Link>
         </div>
       ))}
     </div>

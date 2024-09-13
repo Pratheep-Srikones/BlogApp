@@ -8,7 +8,7 @@ import multer from 'multer';
 
 const app = express();
 app.use(cors({
-    origin: ['http://localhost:5173'],
+    origin: ['http://localhost:5174'], //replace with frontend port number
     credentials: true,
 }));
 app.use(express.json());
